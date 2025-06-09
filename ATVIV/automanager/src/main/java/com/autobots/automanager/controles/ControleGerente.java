@@ -20,7 +20,7 @@ public class ControleGerente {
     private RepositorioGerente repositorio;
 
     @GetMapping("/listar")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')") 
     public ResponseEntity<List<Gerente>> listarGerentes() {
         List<Gerente> gerentes = repositorio.findAll();
         if (gerentes.isEmpty()) {
@@ -29,28 +29,11 @@ public class ControleGerente {
         return new ResponseEntity<>(gerentes, HttpStatus.OK);
     }
 
-    @PostMapping("/criar")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/cadastrar")
+    @PreAuthorize("hasRole('ADMIN')") 
     public ResponseEntity<?> criarGerente(@RequestBody Gerente gerente) {
         repositorio.save(gerente);
         return new ResponseEntity<>(HttpStatus.CREATED);
-    }
-
-    @PutMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<?> atualizarGerente(@PathVariable Long id, @RequestBody Gerente gerenteAtualizado) {
-        Optional<Gerente> gerente = repositorio.findById(id);
-        if (gerente.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
-        Gerente g = gerente.get();
-        g.setNome(gerenteAtualizado.getNome());
-        g.setEmail(gerenteAtualizado.getEmail());
-        g.setTelefone(gerenteAtualizado.getTelefone());
-
-        repositorio.save(g);
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping("/deletar/{id}")
@@ -59,6 +42,17 @@ public class ControleGerente {
         Optional<Gerente> gerente = repositorio.findById(id);
         if (gerente.isPresent()) {
             repositorio.delete(gerente.get());
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+    @PutMapping("/atualizar/{id}")
+    @PreAuthorize("hasRole('ADMIN')") 
+    public ResponseEntity<?> atualizarGerente(@PathVariable Long id, @RequestBody Gerente gerenteAtualizado) {
+        Optional<Gerente> gerenteExistente = repositorio.findById(id);
+        if (gerenteExistente.isPresent()) {
+            gerenteAtualizado.setId(gerenteExistente.get().getId());
+            repositorio.save(gerenteAtualizado);
             return new ResponseEntity<>(HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);

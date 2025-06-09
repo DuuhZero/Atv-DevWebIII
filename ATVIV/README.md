@@ -26,8 +26,8 @@ POST http://localhost:8080/auth/login
 Content-Type: application/json
 
 {
-  "nomeUsuario": "lula",
-  "senha": "123456"
+  "nomeUsuario": "admin",
+  "senha": "admin"
 }
 ```
 
@@ -55,7 +55,7 @@ GET http://localhost:8080/usuarios/buscar/{id}
 ```
 Criar usuário (ADMIN)
 ```
-POST http://localhost:8080/usuarios/criar
+POST http://localhost:8080/usuarios/cadastrar
 Content-Type: application/json
 
 {
@@ -65,47 +65,9 @@ Content-Type: application/json
     "senha": "123456"
   },
   "perfis": ["ROLE_VENDEDOR"],
-  "telefones": [{
-    "ddd": "11",
-    "numero": "987654321"
-  }],
-  "endereco": {
-    "estado": "SP",
-    "cidade": "São Paulo",
-    "bairro": "Centro",
-    "rua": "Av. Paulista",
-    "numero": "1000",
-    "codigoPostal": "01310-100"
-  }
 }
 ```
-Atualizar usuário (ADMIN)
-```
 
-PUT http://localhost:8080/usuarios/{id}
-Content-Type: application/json
-
-{
-  "nome": "Usuário Atualizado",
-  "credencial": {
-    "nomeUsuario": "usuario_att"
-  },
-  "telefones": [{
-    "id": 1,
-    "ddd": "11",
-    "numero": "912345678"
-  }],
-  "endereco": {
-    "id": 1,
-    "estado": "RJ",
-    "cidade": "Rio de Janeiro",
-    "bairro": "Copacabana",
-    "rua": "Av. Atlântica",
-    "numero": "500",
-    "codigoPostal": "22010-000"
-  }
-}
-```
 Deletar usuário (ADMIN)
 ```
 DELETE http://localhost:8080/usuarios/deletar/{id}
@@ -114,16 +76,16 @@ DELETE http://localhost:8080/usuarios/deletar/{id}
 Listar clientes (ADMIN, GERENTE, VENDEDOR)
 
 ```
-GET http://localhost:8080/clientes
+GET http://localhost:8080/clientes/listar
 ```
 
 Buscar cliente por ID (ADMIN, GERENTE, VENDEDOR)
 ```
-GET http://localhost:8080/clientes/{id}
+GET http://localhost:8080/clientes/buscar/{id}
 ```
 Criar cliente (ADMIN, GERENTE, VENDEDOR)
 ```
-POST http://localhost:8080/clientes
+POST http://localhost:8080/clientes/cadastrar
 Content-Type: application/json
 
 {
@@ -133,53 +95,20 @@ Content-Type: application/json
     "senha": "123456"
   },
   "perfis": ["ROLE_CLIENTE"],
-  "telefones": [{
-    "ddd": "11",
-    "numero": "912345678"
-  }],
-  "endereco": {
-    "estado": "SP",
-    "cidade": "São Paulo",
-    "bairro": "Moema",
-    "rua": "Av. Ibirapuera",
-    "numero": "100",
-    "codigoPostal": "04001-000"
-  }
 }
 ```
-Atualizar cliente (ADMIN, GERENTE)
+Atualizar Cliente (ADMIN, GERENTE)
 ```
-
-PUT http://localhost:8080/clientes/{id}
-Content-Type: application/json
-
+PUT http://localhost:8080/clientes/atualizar/{id}
 {
-  "nome": "Cliente Atualizado",
-  "telefones": [{
-    "id": 1,
-    "ddd": "11",
-    "numero": "998877665"
-  }],
-  "endereco": {
-    "id": 1,
-    "estado": "SP",
-    "cidade": "São Paulo",
-    "bairro": "Itaim Bibi",
-    "rua": "Rua Joaquim Floriano",
-    "numero": "100",
-    "complemento": "Apto 201",
-    "codigoPostal": "04534-000"
-  }
+  "nome": "Cliente Novo nome"
 }
 ```
 Deletar cliente (ADMIN, GERENTE)
 ```
-DELETE http://localhost:8080/clientes/{id}
+DELETE http://localhost:8080/clientes/deletar/{id}
 ```
-Meu cadastro (CLIENTE)
-```
-GET http://localhost:8080/clientes/meu-cadastro
-```
+
 #### Vendedores
 Listar vendedores (ADMIN, GERENTE)
 ```
@@ -187,7 +116,7 @@ GET http://localhost:8080/vendedores/listar
 ```
 Criar vendedor (ADMIN, GERENTE)
 ```
-POST http://localhost:8080/vendedores/criar
+POST http://localhost:8080/vendedores/cadastrar
 Content-Type: application/json
 
 {
@@ -203,7 +132,7 @@ Content-Type: application/json
 ```
 Atualizar vendedor (ADMIN, GERENTE)
 ```
-PUT http://localhost:8080/vendedores/{id}
+PUT http://localhost:8080/vendedores/atualizar/{id}
 Content-Type: application/json
 
 {
@@ -223,7 +152,7 @@ GET http://localhost:8080/gerentes/listar
 ```
 Criar gerente (ADMIN)
 ```
-POST http://localhost:8080/gerentes/criar
+POST http://localhost:8080/gerentes/cadastrar
 Content-Type: application/json
 
 {
@@ -237,15 +166,11 @@ Content-Type: application/json
   "telefone": "11987654321"
 }
 ```
-Atualizar gerente (ADMIN)
+Atualizar Gerente (ADMIN)
 ```
-PUT http://localhost:8080/gerentes/{id}
-Content-Type: application/json
-
+PUT http://localhost:8080/gerentes/atualizar/{id}
 {
-  "nome": "Gerente Atualizado",
-  "email": "novoemail@gerente.com",
-  "telefone": "11999999999"
+  "nome": "Novo nome de Gerente "
 }
 ```
 Deletar gerente (ADMIN)
@@ -255,15 +180,15 @@ DELETE http://localhost:8080/gerentes/deletar/{id}
 #### Mercadorias
 Listar mercadorias (ADMIN, GERENTE, VENDEDOR)
 ```
-GET http://localhost:8080/mercadorias
+GET http://localhost:8080/mercadorias/listar
 ```
 Buscar mercadoria por ID (ADMIN, GERENTE, VENDEDOR)
 ```
-GET http://localhost:8080/mercadorias/{id}
+GET http://localhost:8080/mercadorias/buscar/{id}
 ```
 Criar mercadoria (ADMIN, GERENTE)
 ```
-POST http://localhost:8080/mercadorias
+POST http://localhost:8080/mercadorias/cadastrar
 Content-Type: application/json
 
 {
@@ -275,7 +200,7 @@ Content-Type: application/json
 ```
 Atualizar mercadoria (ADMIN, GERENTE)
 ```
-PUT http://localhost:8080/mercadorias
+PUT http://localhost:8080/mercadorias/atualizar/{id}
 Content-Type: application/json
 
 {
@@ -288,20 +213,20 @@ Content-Type: application/json
 ```
 Deletar mercadoria (ADMIN)
 ```
-DELETE http://localhost:8080/mercadorias/{id}
+DELETE http://localhost:8080/mercadorias/deletar/{id}
 ```
 #### Serviços
 Listar serviços (ADMIN, GERENTE, VENDEDOR)
 ```
-GET http://localhost:8080/servicos
+GET http://localhost:8080/servicos/listar
 ```
 Buscar serviço por ID (ADMIN, GERENTE, VENDEDOR)
 ```
-GET http://localhost:8080/servicos/{id}
+GET http://localhost:8080/servicos/buscar/{id}
 ```
 Criar serviço (ADMIN, GERENTE)
 ```
-POST http://localhost:8080/servicos
+POST http://localhost:8080/servicos/cadastrar
 Content-Type: application/json
 
 {
@@ -312,7 +237,7 @@ Content-Type: application/json
 ```
 Atualizar serviço (ADMIN, GERENTE)
 ```
-PUT http://localhost:8080/servicos
+PUT http://localhost:8080/servicos/atualizar/{id}
 Content-Type: application/json
 
 {
@@ -324,15 +249,15 @@ Content-Type: application/json
 ```
 Deletar serviço (ADMIN)
 ```
-DELETE http://localhost:8080/servicos/{id}
+DELETE http://localhost:8080/servicos/deletar/{id}
 ```
 #### Vendas
-Listar todas vendas (ADMIN)
+Listar todas vendas (ADMIN, GERENTE)
 
 ```
-GET http://localhost:8080/vendas
+GET http://localhost:8080/vendas/listar
 ```
-Registrar venda (VENDEDOR, GERENTE)
+Registrar venda (ADMIN,VENDEDOR, GERENTE)
 ```
 POST http://localhost:8080/vendas/cadastrar
 Content-Type: application/json
@@ -345,7 +270,7 @@ Content-Type: application/json
 ```
 Atualizar venda (ADMIN, GERENTE)
 ```
-PUT http://localhost:8080/vendas/{id}
+PUT http://localhost:8080/vendas/atualizar/{id}
 Content-Type: application/json
 
 {
@@ -357,7 +282,7 @@ Content-Type: application/json
 Deletar venda (ADMIN, GERENTE)
 
 ```
-DELETE http://localhost:8080/vendas/{id}
+DELETE http://localhost:8080/vendas/deletar/{id}
 ```
 Minhas vendas (VENDEDOR, GERENTE)
 ```
@@ -368,7 +293,79 @@ Minhas compras (CLIENTE)
 GET http://localhost:8080/vendas/minhas-compras
 ```
 #### Empresa
-Ver dados da empresa (ADMIN, GERENTE)
+Ver dados de todas empresas (ADMIN)
 ```
-GET http://localhost:8080/empresa
+GET http://localhost:8080/empresa/listar
 ```
+
+Buscar dados de uma empresa específica (ADMIN)
+```
+GET http://localhost:8080/empresa/buscar/{id}
+```
+
+Criar uma empresa (ADMIN)
+```
+POST http://localhost:8080/empresa/cadastrar
+
+{
+    "razaoSocial": "Gerson Peças Ltda",
+    "nomeFantasia": "Gerson Peças",
+    "endereco": {
+        "estado": "SP",
+        "cidade": "São Paulo",
+        "bairro": "Centro",
+        "rua": "Rua das Peças",
+        "numero": "123",
+        "codigoPostal": "01001000"
+    },
+    "telefones": [
+        {
+            "ddd": "11",
+            "numero": "987654321"
+        }
+    ],
+    "usuarios": [
+        {
+            "nome": "Gerente da Loja",
+            "perfis": ["GERENTE"],
+            "credencial": {
+                "nomeUsuario": "gerente",
+                "senha": "gerente123"
+            }
+        },
+        {
+            "nome": "Cliente VIP",
+            "perfis": ["CLIENTE"],
+            "credencial": {
+                "nomeUsuario": "cliente",
+                "senha": "cliente123"
+            }
+        }
+    ]
+}
+```
+
+Atualizar uma empresa (ADMIN)
+```
+PUT http://localhost:8080/empresa/atualizar/{id}
+
+{
+    "nomeFantasia": "Gerson Peças Automotivas",
+    "endereco": {
+        "numero": "123A"
+    }
+}
+```
+Deletar uma empresa (ADMIN)
+```
+DELETE http://localhost:8080/empresa/deletar/{id}
+```
+Associar um usuário a tal empresa
+```
+POST http://localhost:8080/empresa/associar/{idEmpresa}
+
+{
+    "idUsuario": 1
+}
+```
+

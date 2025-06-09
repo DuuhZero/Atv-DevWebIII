@@ -23,4 +23,7 @@ public class Credencial implements Serializable{
 	
 	@Column(nullable = false)
 	private String senha;
+
+	public Credencial() {}
+    
 }

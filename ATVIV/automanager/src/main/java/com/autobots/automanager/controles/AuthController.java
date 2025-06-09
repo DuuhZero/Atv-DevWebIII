@@ -30,7 +30,7 @@ public class AuthController {
             String token = provedorJwt.proverJwt(credencial.getNomeUsuario());
             return ResponseEntity.ok(token);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Algum dado está incorreto!");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas");
         }
     }
 }

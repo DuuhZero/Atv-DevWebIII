@@ -5,13 +5,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+
+import org.springframework.hateoas.RepresentationModel;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
 @Entity
-public class Servico {
+@EqualsAndHashCode(callSuper = false)
+public class Servico extends RepresentationModel<Servico> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,7 +27,4 @@ public class Servico {
     
     @Column
     private String descricao;
-    
-    @ManyToOne
-    private Usuario fornecedor;
 }
