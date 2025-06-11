@@ -35,7 +35,7 @@ public class AutomanagerApplication {
 			calendario.set(2002, 05, 15);
 
 			Cliente cliente = new Cliente();
-			cliente.setNome("Pedro AlcÃ¢ntara de BraganÃ§a e Bourbon");
+			cliente.setNome("Pedro Alcantra de Bragança e Bourbon");
 			cliente.setDataCadastro(Calendar.getInstance().getTime());
 			cliente.setDataNascimento(calendario.getTime());
 			cliente.setNomeSocial("Dom Pedro");
@@ -49,7 +49,7 @@ public class AutomanagerApplication {
 			endereco.setEstado("Rio de Janeiro");
 			endereco.setCidade("Rio de Janeiro");
 			endereco.setBairro("Copacabana");
-			endereco.setRua("Avenida AtlÃ¢ntica");
+			endereco.setRua("Avenida Atlãntica");
 			endereco.setNumero("1702");
 			endereco.setCodigoPostal("22021001");
 			endereco.setInformacoesAdicionais("Hotel Copacabana palace");
