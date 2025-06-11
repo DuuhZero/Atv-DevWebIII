@@ -1,4 +1,4 @@
-# Lista de Atividade Desenvolvimento Digital III
+# Lista de Atividade Desenvolvimento Web III
 
 ## Tutorial para clonar o repositório
 
